@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "Hash": "wOVpRSIEV+1v7O7keVEtL886QTbRFoXCGyPfI7F3oo4=",
+  "Source": "GameCharacterApi",
+  "BasePath": "_content/GameCharacterApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GameCharacterApi\\wwwroot",
+      "Source": "GameCharacterApi",
+      "ContentRoot": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\",
+      "BasePath": "_content/GameCharacterApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\index.html",
+      "SourceId": "GameCharacterApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\",
+      "BasePath": "_content/GameCharacterApi",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\uploaded-img\\ellie-tlou.jfif",
+      "SourceId": "GameCharacterApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\",
+      "BasePath": "_content/GameCharacterApi",
+      "RelativePath": "uploaded-img/ellie-tlou.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploaded-img\\ellie-tlou.jfif"
+    }
+  ]
+}

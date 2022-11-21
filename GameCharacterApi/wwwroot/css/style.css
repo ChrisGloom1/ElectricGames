@@ -1,0 +1,11 @@
+body{
+  background-color: #2e3336;
+}
+header{
+  background-color: #23272A;
+  color: #f0f8ff;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 1px -1px 5px black;
+}

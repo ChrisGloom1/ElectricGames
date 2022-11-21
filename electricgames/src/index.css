@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card {
+  max-width: 18rem;
+  min-height: 18rem;
+  max-height: 18rem;
+}
+.card-img-top{
+  max-height: 10rem;
+}
+.card-body{
+  text-align: center;
+}

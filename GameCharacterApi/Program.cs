@@ -28,6 +28,10 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+DefaultFilesOptions options = new DefaultFilesOptions();
+options.DefaultFileNames.Add("index.html");
+app.UseDefaultFiles(options);
+
 // open up for static webpages (wwwroot)
 app.UseStaticFiles();
 // activate cors configuration called "AllowAll"

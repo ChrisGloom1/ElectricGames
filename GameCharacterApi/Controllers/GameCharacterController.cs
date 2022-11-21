@@ -21,6 +21,29 @@ public class GameCharacterController : ControllerBase
     return allCharacters;
   }
 
+  [HttpGet("{id}")]
+  public async Task<ActionResult<GameCharacter>> Get(int id)
+  {
+    GameCharacter? character = await context.GameCharacter.FindAsync(id);
+
+    if (character != null)
+    {
+      return Ok(character);
+    }
+    else
+    {
+      return NotFound();
+    }
+  }
+
+  [HttpPut]
+  public IActionResult Put(GameCharacter editedChar)
+  {
+    context.Entry(editedChar).State = EntityState.Modified;
+    context.SaveChangesAsync();
+    return NoContent();
+  }
+
   [HttpDelete("{id}")]
   public async Task<IActionResult> Delete(int Id)
   {
@@ -44,4 +67,25 @@ public class GameCharacterController : ControllerBase
     }
   }
 
+}
+
+public class UploadImgController : ControllerBase
+{
+  private readonly IWebHostEnvironment hosting;
+  public UploadImgController(IWebHostEnvironment _hosting)
+  {
+    hosting = _hosting;
+  }
+  [HttpPost]
+  public IActionResult SaveImg(IFormFile file)
+  {
+    string wwwrootpath = hosting.WebRootPath;
+    string absolutePath = Path.Combine($"{wwwrootpath}/uploaded-img/{file.FileName}");
+
+    using (var fileStream = new FileStream(absolutePath, FileMode.Create))
+    {
+      file.CopyTo(fileStream);
+    }
+    return Ok();
+  }
 }

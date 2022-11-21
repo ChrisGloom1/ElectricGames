@@ -1,24 +1,48 @@
 import axios from "axios";
+import ICharacter from "../interfaces/ICharacter";
 
 const ElectricGamesService = (
   () =>{
 
-    const endpoint = {
-      characters: `https://localhost:7293/GameCharacter`
-    } 
+    const endpoint = "https://localhost:7293/GameCharacter"
 
     const getAll = async () => {
-      const r = await axios.get(endpoint.characters)
+      const r = await axios.get(endpoint)
+      return r.data;
+    }
+
+    const getCharById = async (id: number) => {
+      const r = await axios.get(`${endpoint}/${id}`)
       return r.data;
     }
 
     const delCharById = async (id: number) => {
-      const r = await axios.delete(`${endpoint.characters}/${id}`)
-      console.log(r)
+      const r = await axios.delete(`${endpoint}/${id}`)
+    }
+
+    const putChar = async (editedChar: ICharacter) => {
+      try {
+        const r = await axios.put(endpoint, editedChar)
+      } 
+      catch (error) {
+        alert(error)
+      }
+    }
+
+    const uploadImg = async (img: File) => {
+      const formData = new FormData();
+      formData.append("file", img)
+
+      const r = await axios({
+        url: endpoint,
+        method: "POST",
+        data: FormData,
+        headers: {"Content-Type": "multiart/form-data"}
+      })
     }
 
     return{
-      getAll, delCharById
+      getAll, delCharById, putChar, getCharById, uploadImg
     }
   } 
 )();

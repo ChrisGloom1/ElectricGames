@@ -36,6 +36,21 @@ public class GameCharacterController : ControllerBase
     }
   }
 
+  [HttpPost]
+  public IActionResult Post(GameCharacter newChar)
+  {
+    try
+    {
+      context.GameCharacter.Add(newChar);
+      context.SaveChanges();
+      return CreatedAtAction("Get", new { id = newChar.Id }, newChar);
+    }
+    catch
+    {
+      return StatusCode(500);
+    }
+  }
+
   [HttpPut]
   public IActionResult Put(GameCharacter editedChar)
   {
@@ -67,25 +82,4 @@ public class GameCharacterController : ControllerBase
     }
   }
 
-}
-
-public class UploadImgController : ControllerBase
-{
-  private readonly IWebHostEnvironment hosting;
-  public UploadImgController(IWebHostEnvironment _hosting)
-  {
-    hosting = _hosting;
-  }
-  [HttpPost]
-  public IActionResult SaveImg(IFormFile file)
-  {
-    string wwwrootpath = hosting.WebRootPath;
-    string absolutePath = Path.Combine($"{wwwrootpath}/uploaded-img/{file.FileName}");
-
-    using (var fileStream = new FileStream(absolutePath, FileMode.Create))
-    {
-      file.CopyTo(fileStream);
-    }
-    return Ok();
-  }
 }

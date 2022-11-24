@@ -1,3 +1,4 @@
+import CreateCharacter from "./components/characters/CreateCharacter";
 import DeleteCharacter from "./components/characters/DeleteCharacter";
 import EditCharacter from "./components/characters/EditCharacter";
 import HomePage from "./pages/HomePage";
@@ -5,10 +6,8 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <>
-      <EditCharacter/>
-      <DeleteCharacter/>
-      <HomePage/>
-      
+      <CreateCharacter />
+      <HomePage />
     </>
   );
 }

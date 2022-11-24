@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Sfbz58uUrdjnzqZqGXkAZv7rJnlNrnH2ExJMF05ZBuM=",
+  "Hash": "XyUctuEQVnhy5CL11/m/v07tKzEuLQK9UrFcmhTtIBg=",
   "Source": "GameCharacterApi",
   "BasePath": "_content/GameCharacterApi",
   "Mode": "Default",
@@ -306,12 +306,12 @@
       "OriginalItemSpec": "wwwroot\\uploaded-img\\samus.jfif"
     },
     {
-      "Identity": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\uploaded-img\\sonic.jpg",
+      "Identity": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\uploaded-img\\tails.jfif",
       "SourceId": "GameCharacterApi",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\",
       "BasePath": "_content/GameCharacterApi",
-      "RelativePath": "uploaded-img/sonic.jpg",
+      "RelativePath": "uploaded-img/tails.jfif",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -320,7 +320,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploaded-img\\sonic.jpg"
+      "OriginalItemSpec": "wwwroot\\uploaded-img\\tails.jfif"
     },
     {
       "Identity": "C:\\Users\\Chris\\Desktop\\ElectricGames\\ElectricGames\\GameCharacterApi\\wwwroot\\uploaded-img\\triss.jfif",

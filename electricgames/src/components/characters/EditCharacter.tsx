@@ -3,16 +3,16 @@ import ElectricGamesService from "../../services/ElectricGamesService";
 
 const EditCharacter = () => {
 
-  const [id, setId] = useState<string>("id ikke satt")
-  const [name, setName] = useState<string>("navn ikke satt")
-  const [game, setGame] = useState<string>("spill ikke satt")
-  // const [img, setImg] = useState<File|null>(null)
+  const [id, setId] = useState<string>("Id ikke satt")
+  const [name, setName] = useState<string>("Navn ikke satt")
+  const [game, setGame] = useState<string>("Spill ikke satt")
+  const [img, setImg] = useState<File | null>(null)
 
   const getCharFromService = async () => {
     const char = await ElectricGamesService.getCharById(parseInt(id));
     setName(char.name);
     setGame(char.game);
-    // setImg(char.image);
+    
   }
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,41 +30,66 @@ const EditCharacter = () => {
     }
   }
 
-  // const setImgHandler = (e:ChangeEvent<HTMLInputElement>) => {
-  //   if (img != null){
-  //     ElectricGamesService.uploadImg(img)
-  //   }
-  // }
+  // Sette i context?
+  const setImgHandler = (e:ChangeEvent<HTMLInputElement>) => {
+    const {files} = e.target;
+    if (files != null){
+      const file = files[0];
+      setImg(file)
+    }
+  }
 
   const editChar = () => {
-    const editedChar = {
-      id: parseInt(id),
-      name: name,
-      game: game,
-      // image: img.toString()
-    };
-    // ElectricGamesService.putChar(editedChar)
+    let editedChar;
+    if (img != null){
+      editedChar = {
+        id: parseInt(id),
+        name: name,
+        game: game,
+        image: img.name
+      };
+      ElectricGamesService.uploadImg(img);
+    }
+    else {
+      editedChar = {
+        id: parseInt(id),
+        name: name,
+        game: game
+      };
+    }
+    ElectricGamesService.putChar(editedChar)
   }
 
   return(
-    <section className="container">
-      <div>
-        <label>Id</label>
-        <input name="id" onChange={changeHandler} type="string" value={id} />
-        <button className="btn btn-primary" onClick={getCharFromService}>Hent Karakter</button>
+    <section>
+
+      <div className="input-group mb-5">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Id</span>
+        </div>
+        <input type="string" name="id" className="form-control" onChange={changeHandler} value={id}/>
+          <div className="input-group-append">
+          <button className="btn btn-primary" onClick={getCharFromService}>Hent karakter</button>
+        </div>
       </div>
-      <div>
-        <label>Navn</label>
-        <input name="name" onChange={changeHandler} type="text" value={name} />
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Navn</span>
+        </div>
+        <input type="text" onChange={changeHandler} name="name" className="form-control" value={name}/>
       </div>
-      <div>
-        <label>Spill</label>
-        <input name="game" onChange={changeHandler} type="text" value={game} />
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Spill</span>
+        </div>
+        <input type="text" onChange={changeHandler} name="game" className="form-control" value={game}/>
       </div>
-      {/* <div>
+
+      <div>
         <label>Bilde</label>
         <input onChange={setImgHandler} type="file" />
-      </div> */}
+      </div>
+      <button name="image" className="btn btn-success mt-5" onClick={editChar}>Endre karakter</button>
     </section>
   )
 }

@@ -49,7 +49,7 @@ const ElectricGamesService = (
         data: formData,
         headers: {"Content-Type": "multiart/form-data"}
       });
-      // formData.delete("file");
+      formData.delete("file");
     }
 
     return{

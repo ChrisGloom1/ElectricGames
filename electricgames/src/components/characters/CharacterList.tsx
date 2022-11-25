@@ -20,7 +20,7 @@ const CharacterList = () => {
   }
 
   return(
-    <section className="row">{getCharacterItems()}</section>
+    <section className="row gy-4">{getCharacterItems()}</section>
   )
 }
 

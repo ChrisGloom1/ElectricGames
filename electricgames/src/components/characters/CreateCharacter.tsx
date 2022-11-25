@@ -7,6 +7,7 @@ const CreateCharacter = () => {
   const [game, setGame] = useState<string>("")
   const [img, setImg] = useState<File | null>(null)
 
+  // Sette i context?
   const setImageHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {files} = e.target;
     if (files != null){
@@ -36,26 +37,32 @@ const CreateCharacter = () => {
     }
   }
 
-  const uploadImg = async () => {
-    if (img != null){
-      ElectricGamesService.uploadImg(img);
-    }
-  }
+  // const uploadImg = async () => {
+  //   if (img != null){
+  //     ElectricGamesService.uploadImg(img);
+  //   }
+  // }
 
   return(
     <section>
-      <div>
-        <label>Navn</label>
-        <input type="text" onChange={changeHandler} name="name"/>
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Navn</span>
+        </div>
+        <input type="text" onChange={changeHandler} name="name" className="form-control"/>
+      </div>
+
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Spill</span>
+        </div>
+        <input type="text" onChange={changeHandler} name="game" className="form-control"/>
       </div>
       <div>
-        <label>Spill</label>
-        <input type="text" onChange={changeHandler} name="game"/>
-      </div>
-      <div>
+        <label>Bilde</label>
         <input type="file" onChange={setImageHandler}/> 
       </div>
-      <button onClick={uploadChar}>Last opp karakter</button>
+      <button onClick={uploadChar} className="btn btn-success mt-5">Last opp karakter</button>
     </section>
   )
 }

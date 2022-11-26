@@ -17,14 +17,15 @@ const DeleteCharacter = () => {
 
 
   return(
-    <section className="container">
-      <h3>Slett en karakter</h3>
+    <section>  
       <p>Antall karakterer i databasen: {characters.length}</p>
-      <div>
-        <label>Oppgi ID for karakteren som skal slettes</label>
-        <input type="number" onChange={handleChange} value={id} />
+      <div className="input-group">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Oppgi ID for karakteren som skal slettes</span>
+        </div>
+          <input type="number" className="form-control" onChange={handleChange} value={id} />
       </div>
-      <button className="btn btn-danger" onClick={deleteCharacter}>Slett karakter</button>
+      <button className="btn btn-danger mt-5" onClick={deleteCharacter}>Slett karakter</button>
     </section>
   )
 }

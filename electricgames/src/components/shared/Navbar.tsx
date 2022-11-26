@@ -13,8 +13,11 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
+              <li className="nav-item">
                 <Link to="/HomePage" className="nav-link">Se alle</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/GetCharacterPage" className="nav-link">Hent</Link>
               </li>
               <li className="nav-item">
                 <Link to="/CreatePage" className="nav-link">Opprett</Link>
@@ -23,7 +26,7 @@ const Navbar = () => {
                 <Link to="/EditPage" className="nav-link">Oppdater</Link>
               </li>
               <li className="nav-item">
-                <Link to="/DeleteCharacter" className="nav-link">Slett</Link>
+                <Link to="/DeletePage" className="nav-link">Slett</Link>
               </li>
             </ul>
           </div>

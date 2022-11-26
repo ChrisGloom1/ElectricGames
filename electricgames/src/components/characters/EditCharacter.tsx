@@ -62,7 +62,6 @@ const EditCharacter = () => {
 
   return(
     <section>
-
       <div className="input-group mb-5">
         <div className="input-group-prepend">
           <span className="input-group-text" id="basic-addon1">Id</span>
@@ -84,7 +83,6 @@ const EditCharacter = () => {
         </div>
         <input type="text" onChange={changeHandler} name="game" className="form-control" value={game}/>
       </div>
-
       <div>
         <label>Bilde</label>
         <input onChange={setImgHandler} type="file" />

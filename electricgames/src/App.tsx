@@ -13,6 +13,7 @@ function App() {
         <Navbar />
         <main className="container">
           <Routes>
+            <Route path="/" element={<HomePage />}></Route>
             <Route path="/HomePage" element={<HomePage />}></Route>
             <Route path="/GetCharacterPage" element={<GetCharacterPage />}></Route>
             <Route path="/CreatePage" element={<CreatePage />}></Route>

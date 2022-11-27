@@ -1,45 +1,111 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useState, useContext } from "react";
 import CharacterItem from "./CharacterItem";
 import ElectricGamesService from "../../services/ElectricGamesService";
 import ICharacter from "../../interfaces/ICharacter";
+import ICharacterContext from "../../interfaces/ICharacterContext";
+import { CharacterContext } from "../../contexts/CharacterContext";
+
 
 const GetCharacterById = () => {
 
+  const {characters} = useContext(CharacterContext) as ICharacterContext;
+
   const [id, setId] = useState<number>(0);
-  const [character, setCharacter] = useState<ICharacter[]>([]);
+  const [game, setGame] = useState<string>("")
+  const [character, setCharacter] = useState<ICharacter | null>(null);
+  const [gameCharacters, setGameCharacters] = useState<ICharacter[]>([]);
+  const [isError, setError] = useState(false)
   
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setId(parseInt(e.currentTarget.value))
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.currentTarget;
+    switch(name){
+      case "id":
+        setId(parseInt(value))
+        break;
+      case "game":
+        setGame(value)
+        break;
+    }
   }
 
   const getCharacter = async () => {
-    const char = await ElectricGamesService.getCharById(id);
-    setCharacter(char)
+    try{
+      const char = await ElectricGamesService.getCharById(id);
+      setCharacter(char)  
+      setError(false) 
+      setGameCharacters([])
+    }
+    catch{
+      setCharacter(null)
+      setError(true)
+    }  
   }
 
-  // const displayChar = () => {
-  //   return (
-  //       <CharacterItem
-  //         id={character.id}
-  //         name={character.name}
-  //         game={character.game}
-  //         image={`https://localhost:7293/uploaded-img/${character.image}`}
-  //       />
-  // )}
+  const getChars = () => {
+    const gameChars = characters.filter(chars => 
+      chars.game.toLowerCase().indexOf(game.toLowerCase()) >= 0
+    )
+    setGameCharacters(gameChars);
+    setCharacter(null)
+    setError(false)
+  }
+  
 
   return (
     <>
     <section>
-        <div className="input-group">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="basic-addon1">Oppgi ID for karakteren som skal hentes</span>
-          </div>
-          <input type="number" className="form-control" onChange={handleChange} value={id} />
-        </div>
-        <button className="btn btn-primary mt-5" onClick={getCharacter}>Hent karakter</button>
-      </section>
 
-      <section className="row"></section>
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Id</span>
+        </div>
+        <input name="id" type="number" className="form-control" onChange={changeHandler} value={id} />
+        <div className="input-group-append">
+          <button className="btn btn-primary" onClick={getCharacter}>Hent karakter</button>
+        </div>
+      </div>
+
+      <div className="input-group">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">Spill</span>
+        </div>
+        <input name="game" type="text" className="form-control" onChange={changeHandler} value={game} placeholder="Legend of Zelda"/>
+        <div className="input-group-append">
+          <button className="btn btn-primary" onClick={getChars}>Hent karakter</button>
+        </div>
+      </div>
+
+    </section >
+
+    <section className="row mt-4">
+      {character != null && (
+        <CharacterItem
+          id={character.id}
+          name={character.name}
+          game={character.game}
+          image={`https://localhost:7293/uploaded-img/${character.image}`}
+        />
+      )
+    }
+    {isError && (
+      <p className="text-danger">ID ikke funnet.</p>
+    )}
+
+    <section className="row">
+      {gameCharacters.map((char, i) => (
+        <CharacterItem
+          key={`c-${i}`}
+          id={char.id}
+          name={char.name}
+          game={char.game}
+          image={`https://localhost:7293/uploaded-img/${char.image}`}
+        />
+      ))}
+
+    </section>
+      
+      
+      </section>
     </>
   )
 }

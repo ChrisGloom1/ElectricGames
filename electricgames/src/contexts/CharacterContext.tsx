@@ -25,12 +25,20 @@ const CharacterProvider = ({children} : Props) => {
   
   const delCharacterById = async (id: number) => {
     await ElectricGamesService.delCharById(id)
-    const arr = characters.filter(char => char.id != id)
-    setCharacters(arr);
+    getCharactersFromService();
+  }
+
+  const uploadChar = async (name: string, game: string, img: File | null) => {
+    const newChar = {name: name, game: game, image: img?.name}
+    await ElectricGamesService.postChar(newChar)
+    if (img != null){
+      await ElectricGamesService.uploadImg(img);
+    }
+    getCharactersFromService();
   }
 
   return (
-    <CharacterContext.Provider value={{characters, delCharacterById}}>
+    <CharacterContext.Provider value={{characters, delCharacterById, uploadChar, getCharactersFromService}}>
       {children}
     </CharacterContext.Provider>
   )

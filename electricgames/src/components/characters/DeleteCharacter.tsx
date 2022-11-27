@@ -21,7 +21,7 @@ const DeleteCharacter = () => {
       <p>Antall karakterer i databasen: {characters.length}</p>
       <div className="input-group">
         <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon1">Oppgi ID for karakteren som skal slettes</span>
+          <span className="input-group-text" id="basic-addon1">Id</span>
         </div>
           <input type="number" className="form-control" onChange={handleChange} value={id} />
       </div>

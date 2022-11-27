@@ -1,27 +1,20 @@
-import {ChangeEvent, useState} from "react";
-import ElectricGamesService from "../../services/ElectricGamesService";
+import {ChangeEvent, useState, useContext} from "react";
+import {CharacterContext} from "../../contexts/CharacterContext";
+import ICharacterContext from "../../interfaces/ICharacterContext";
 
 const CreateCharacter = () => {
+
+  const {uploadChar} = useContext(CharacterContext) as ICharacterContext
 
   const [name, setName] = useState<string>("")
   const [game, setGame] = useState<string>("")
   const [img, setImg] = useState<File | null>(null)
 
-  // Sette i context?
   const setImageHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {files} = e.target;
     if (files != null){
       const file = files[0];
       setImg(file)
-    }
-  }
-
-  const uploadChar = async () => {
-    const newChar = {name: name, game: game, image: img?.name}
-    const r = ElectricGamesService.postChar(newChar)
-    console.log(r);
-    if (img != null){
-      ElectricGamesService.uploadImg(img);
     }
   }
 
@@ -36,12 +29,6 @@ const CreateCharacter = () => {
         break;
     }
   }
-
-  // const uploadImg = async () => {
-  //   if (img != null){
-  //     ElectricGamesService.uploadImg(img);
-  //   }
-  // }
 
   return(
     <section>
@@ -60,9 +47,9 @@ const CreateCharacter = () => {
       </div>
       <div>
         <label>Bilde</label>
-        <input type="file" onChange={setImageHandler}/> 
+        <input type="file" onChange={setImageHandler} name="image"/> 
       </div>
-      <button onClick={uploadChar} className="btn btn-success mt-5">Last opp karakter</button>
+      <button onClick={ () => uploadChar(name, game, img)} className="btn btn-success mt-5">Last opp karakter</button>
     </section>
   )
 }

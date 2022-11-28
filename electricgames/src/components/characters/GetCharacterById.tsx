@@ -77,7 +77,7 @@ const GetCharacterById = () => {
 
     </section >
 
-    <section className="row mt-4">
+    <section className="row gy-4 mt-2">
       {character != null && (
         <CharacterItem
           id={character.id}
@@ -91,7 +91,7 @@ const GetCharacterById = () => {
       <p className="text-danger">ID ikke funnet.</p>
     )}
 
-    <section className="row">
+    <section className="row gy-4">
       {gameCharacters.map((char, i) => (
         <CharacterItem
           key={`c-${i}`}
